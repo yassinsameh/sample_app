@@ -33,7 +33,9 @@ class AuthWrapperState extends ConsumerState<AuthWrapper> {
       body: Center(
         child: ref.watch(authStateChangesProvider).when(
             data: (user) {
-              Future.microtask(() => context.goNamed(Home.path));
+              if (user != null) {
+                Future.microtask(() => context.goNamed(Home.path));
+              }
               return const LoadingIndicator();
             },
             error: (error, stack) => const GeneralError(),
