@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1040064401222",
+    "project_id": "innoscripta-demo",
+    "storage_bucket": "innoscripta-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040064401222:android:6b2a2b114b54e284135f47",
+        "android_client_info": {
+          "package_name": "com.innoscripta.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040064401222-h35l16p1ft0r28fo3gji2hhnh3vuda6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4vuJWWiXgGiXh9yAVvGPioGKUi-sF_Co"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040064401222-h35l16p1ft0r28fo3gji2hhnh3vuda6b.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1040064401222-0ggsi0cd7fihuhnm12b6ne17ng6sapfl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.innoscripta.demo.innoscriptaDemo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
