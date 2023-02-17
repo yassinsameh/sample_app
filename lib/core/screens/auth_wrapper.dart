@@ -27,6 +27,9 @@ class AuthWrapperState extends ConsumerState<AuthWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palette.backgroundColor,
+      appBar: AppBar(
+        elevation: 0,
+      ),
       body: Center(
         child: ref.watch(authStateChangesProvider).when(
             data: (user) {

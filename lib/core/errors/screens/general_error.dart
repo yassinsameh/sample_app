@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:innoscripta_demo/core/errors/messages.dart';
 
 class GeneralError extends StatelessWidget {
   const GeneralError({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class GeneralError extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Something went wrong"),
+        child: Text(ErrorMessages.genericError),
       ),
     );
   }

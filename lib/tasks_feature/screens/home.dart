@@ -54,6 +54,7 @@ class HomeState extends ConsumerState<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Innoscripta",
           style: AppThemeData.themeData.textTheme.displayMedium,
@@ -95,11 +96,13 @@ class HomeState extends ConsumerState<Home> {
               count: 3,
               effect: JumpingDotEffect(
                   activeDotColor: Palette.primaryColor1,
+                  dotHeight: 10,
+                  dotWidth: 10,
                   dotColor: Palette.primaryColor1
                       .withOpacity(0.2)), // your preferred effect
               onDotClicked: (index) {}),
           const SizedBox(
-            height: 25,
+            height: 30,
           ),
         ],
       ),

@@ -23,6 +23,7 @@ class TasksNotifier extends StateNotifier<TasksState> {
       _tasksService.fetchTasks().listen((tasks) {
         state = state.copyWith(allTasks: AsyncValue.data(tasks));
       }, onError: (e, stack) {
+        if (!mounted) return;
         state = state.copyWith(allTasks: AsyncError(e, stack));
       });
     } catch (e, stack) {
@@ -31,10 +32,17 @@ class TasksNotifier extends StateNotifier<TasksState> {
   }
 
   Future<void> updateTask(
-      {required Task task, bool markCompleteNow = false}) async {
+      {required Task task, bool changingStatus = false}) async {
     try {
-      if (markCompleteNow) {
-        task = task.copyWith(completedTime: DateTime.now());
+      if (changingStatus) {
+        //Task was marked done
+        if (task.status == TaskStatus.done) {
+          task = task.copyWith(completedTime: DateTime.now());
+        }
+        //Task was marked otherwise, remove completion time
+        else {
+          task = task.copyWith(completedTime: null);
+        }
       }
       await _tasksService.updateTask(task: task);
     } catch (e) {

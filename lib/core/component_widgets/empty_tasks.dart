@@ -13,9 +13,11 @@ class EmptyTasks extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Spacer(),
-        Image.asset(
-          "${AssetsPaths.images}/empty_tasks.png",
-          height: MediaQuery.of(context).size.height * 0.3,
+        Flexible(
+          child: Image.asset(
+            "${AssetsPaths.images}/empty_tasks.png",
+            height: MediaQuery.of(context).size.height * 0.3,
+          ),
         ),
         const SizedBox(
           height: 20,

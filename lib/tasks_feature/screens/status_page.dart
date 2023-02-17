@@ -58,7 +58,7 @@ class StatusPageState extends ConsumerState<StatusPage>
             onPressed: () {
               ref.read(tasksProvider.notifier).updateTask(
                   task: task.copyWith(status: status),
-                  markCompleteNow: status == TaskStatus.done ? true : false);
+                  changingStatus: status == TaskStatus.done ? true : false);
             },
             text: "Mark ${status.name}"),
       );
@@ -182,7 +182,8 @@ class StatusPageState extends ConsumerState<StatusPage>
                                             currentStatus: widget.status)
                                       ],
                                     ),
-                                    if (task.completedTime != null)
+                                    if (task.status == TaskStatus.done &&
+                                        task.completedTime != null)
                                       Text(
                                         "Completed on: \n${TasksUtils.dateToTaskDisplayedTime(time: task.completedTime!)}",
                                         style: AppThemeData

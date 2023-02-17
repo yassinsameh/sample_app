@@ -42,7 +42,7 @@ dependencies:
   firebase_auth: ^4.2.8
   #Model creation & Local storage
   freezed_annotation: ^2.2.0
-  json_annotation: ^4.7.0
+  json_annotation: ^4.8.0
   #Page transition
   smooth_page_indicator: ^1.0.1
 
@@ -54,8 +54,8 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
   #Code generation & Models
-  json_serializable: ^6.5.4
-  freezed: ^2.2.1
+  json_serializable: ^6.6.1
+  freezed: ^2.3.2
   build_runner: ^2.3.2
 
 # For information on the generic Dart part of this file, see the

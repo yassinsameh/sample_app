@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:innoscripta_demo/core/component_widgets/input_field.dart';
+import 'package:innoscripta_demo/core/component_widgets/snackbar.dart';
+import 'package:innoscripta_demo/core/navigation.dart';
 import 'package:innoscripta_demo/core/theme/theme.dart';
 import 'package:innoscripta_demo/tasks_feature/tasks_notifier.dart';
 
@@ -118,12 +120,16 @@ class TaskDetailsState extends ConsumerState<TaskDetails> {
                       await ref
                           .read(tasksProvider.notifier)
                           .deleteTask(id: task!.id);
-
-                      if (mounted) context.pop();
+                      if (!mounted) return;
+                      context.pop();
+                      Future.delayed(const Duration(milliseconds: 500))
+                          .then((value) {
+                        AppSnackbar.showSuccessSnackbar(
+                            text: "Task has been removed successfully");
+                      });
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Something went wrong')),
-                      );
+                      AppSnackbar.showSuccessSnackbar(
+                          text: 'Something went wrong, please try again');
                     } finally {
                       setState(() {
                         loading = false;
@@ -146,17 +152,25 @@ class TaskDetailsState extends ConsumerState<TaskDetails> {
                       return;
                     }
 
+                    //Updating
                     if (task != null) {
                       task = task!.copyWith(title: titleController.text.trim());
                       await ref
                           .read(tasksProvider.notifier)
                           .updateTask(task: task!);
-                      if (mounted) context.pop();
-                      return;
+                    } //Adding new task
+                    else {
+                      await ref
+                          .read(tasksProvider.notifier)
+                          .addTask(title: titleController.text.trim());
                     }
-                    await ref
-                        .read(tasksProvider.notifier)
-                        .addTask(title: titleController.text.trim());
+
+                    Future.delayed(const Duration(milliseconds: 500))
+                        .then((value) {
+                      AppSnackbar.showSuccessSnackbar(
+                          text:
+                              "Task has been ${task == null ? "added" : "updated"} successfully");
+                    });
 
                     if (mounted) context.pop();
                   } catch (e) {

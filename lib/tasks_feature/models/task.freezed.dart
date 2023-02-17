@@ -20,12 +20,11 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
-  @JsonKey(toJson: null, includeIfNull: false)
+  @JsonKey(includeToJson: false)
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(toJson: null, includeIfNull: false)
-  String get createdBy => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime? get completedTime => throw _privateConstructorUsedError;
+  String get createdBy => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError; //Number of seconds
   int get timeSpent => throw _privateConstructorUsedError;
   TaskStatus get status => throw _privateConstructorUsedError;
@@ -41,9 +40,9 @@ abstract class $TaskCopyWith<$Res> {
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
   $Res call(
-      {@JsonKey(toJson: null, includeIfNull: false) String id,
-      @JsonKey(toJson: null, includeIfNull: false) String createdBy,
+      {@JsonKey(includeToJson: false) String id,
       @TimestampConverter() DateTime? completedTime,
+      String createdBy,
       String title,
       int timeSpent,
       TaskStatus status});
@@ -63,8 +62,8 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @override
   $Res call({
     Object? id = null,
-    Object? createdBy = null,
     Object? completedTime = freezed,
+    Object? createdBy = null,
     Object? title = null,
     Object? timeSpent = null,
     Object? status = null,
@@ -74,14 +73,14 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      createdBy: null == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String,
       completedTime: freezed == completedTime
           ? _value.completedTime
           : completedTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -105,9 +104,9 @@ abstract class _$$_TaskCopyWith<$Res> implements $TaskCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(toJson: null, includeIfNull: false) String id,
-      @JsonKey(toJson: null, includeIfNull: false) String createdBy,
+      {@JsonKey(includeToJson: false) String id,
       @TimestampConverter() DateTime? completedTime,
+      String createdBy,
       String title,
       int timeSpent,
       TaskStatus status});
@@ -123,8 +122,8 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
   @override
   $Res call({
     Object? id = null,
-    Object? createdBy = null,
     Object? completedTime = freezed,
+    Object? createdBy = null,
     Object? title = null,
     Object? timeSpent = null,
     Object? status = null,
@@ -134,14 +133,14 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      createdBy: null == createdBy
-          ? _value.createdBy
-          : createdBy // ignore: cast_nullable_to_non_nullable
-              as String,
       completedTime: freezed == completedTime
           ? _value.completedTime
           : completedTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -163,9 +162,9 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res, _$_Task>
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$_Task with DiagnosticableTreeMixin implements _Task {
   const _$_Task(
-      {@JsonKey(toJson: null, includeIfNull: false) required this.id,
-      @JsonKey(toJson: null, includeIfNull: false) required this.createdBy,
+      {@JsonKey(includeToJson: false) required this.id,
       @TimestampConverter() this.completedTime,
+      required this.createdBy,
       required this.title,
       required this.timeSpent,
       required this.status});
@@ -173,14 +172,13 @@ class _$_Task with DiagnosticableTreeMixin implements _Task {
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
-  @JsonKey(toJson: null, includeIfNull: false)
+  @JsonKey(includeToJson: false)
   final String id;
-  @override
-  @JsonKey(toJson: null, includeIfNull: false)
-  final String createdBy;
   @override
   @TimestampConverter()
   final DateTime? completedTime;
+  @override
+  final String createdBy;
   @override
   final String title;
 //Number of seconds
@@ -191,7 +189,7 @@ class _$_Task with DiagnosticableTreeMixin implements _Task {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Task(id: $id, createdBy: $createdBy, completedTime: $completedTime, title: $title, timeSpent: $timeSpent, status: $status)';
+    return 'Task(id: $id, completedTime: $completedTime, createdBy: $createdBy, title: $title, timeSpent: $timeSpent, status: $status)';
   }
 
   @override
@@ -200,8 +198,8 @@ class _$_Task with DiagnosticableTreeMixin implements _Task {
     properties
       ..add(DiagnosticsProperty('type', 'Task'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('createdBy', createdBy))
       ..add(DiagnosticsProperty('completedTime', completedTime))
+      ..add(DiagnosticsProperty('createdBy', createdBy))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('timeSpent', timeSpent))
       ..add(DiagnosticsProperty('status', status));
@@ -213,10 +211,10 @@ class _$_Task with DiagnosticableTreeMixin implements _Task {
         (other.runtimeType == runtimeType &&
             other is _$_Task &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdBy, createdBy) ||
-                other.createdBy == createdBy) &&
             (identical(other.completedTime, completedTime) ||
                 other.completedTime == completedTime) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.timeSpent, timeSpent) ||
                 other.timeSpent == timeSpent) &&
@@ -226,7 +224,7 @@ class _$_Task with DiagnosticableTreeMixin implements _Task {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, createdBy, completedTime, title, timeSpent, status);
+      runtimeType, id, completedTime, createdBy, title, timeSpent, status);
 
   @JsonKey(ignore: true)
   @override
@@ -244,12 +242,9 @@ class _$_Task with DiagnosticableTreeMixin implements _Task {
 
 abstract class _Task implements Task {
   const factory _Task(
-      {@JsonKey(toJson: null, includeIfNull: false)
-          required final String id,
-      @JsonKey(toJson: null, includeIfNull: false)
-          required final String createdBy,
-      @TimestampConverter()
-          final DateTime? completedTime,
+      {@JsonKey(includeToJson: false) required final String id,
+      @TimestampConverter() final DateTime? completedTime,
+      required final String createdBy,
       required final String title,
       required final int timeSpent,
       required final TaskStatus status}) = _$_Task;
@@ -257,14 +252,13 @@ abstract class _Task implements Task {
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 
   @override
-  @JsonKey(toJson: null, includeIfNull: false)
+  @JsonKey(includeToJson: false)
   String get id;
-  @override
-  @JsonKey(toJson: null, includeIfNull: false)
-  String get createdBy;
   @override
   @TimestampConverter()
   DateTime? get completedTime;
+  @override
+  String get createdBy;
   @override
   String get title;
   @override //Number of seconds

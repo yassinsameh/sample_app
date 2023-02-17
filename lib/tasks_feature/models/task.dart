@@ -11,9 +11,9 @@ part 'task.g.dart';
 class Task with _$Task {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory Task({
-    @JsonKey(toJson: null, includeIfNull: false) required String id,
-    @JsonKey(toJson: null, includeIfNull: false) required String createdBy,
+    @JsonKey(includeToJson: false) required String id,
     @TimestampConverter() DateTime? completedTime,
+    required String createdBy,
     required String title,
     //Number of seconds
     required int timeSpent,
