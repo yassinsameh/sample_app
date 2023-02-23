@@ -57,8 +57,7 @@ class StatusPageState extends ConsumerState<StatusPage>
             backgroundColor: Palette.whiteText,
             onPressed: () {
               ref.read(tasksProvider.notifier).updateTask(
-                  task: task.copyWith(status: status),
-                  changingStatus: status == TaskStatus.done ? true : false);
+                  task: task.copyWith(status: status), changingStatus: true);
             },
             text: "Mark ${status.name}"),
       );

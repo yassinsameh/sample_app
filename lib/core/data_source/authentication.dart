@@ -21,6 +21,7 @@ class AuthDatasource {
     try {
       await auth.signInAnonymously();
     } on FirebaseException catch (e, stack) {
+      //Log in crashlytics
       throw ("Failed to sign in");
     }
   }

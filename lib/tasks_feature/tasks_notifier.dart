@@ -43,6 +43,10 @@ class TasksNotifier extends StateNotifier<TasksState> {
         else {
           task = task.copyWith(completedTime: null);
         }
+
+        ///Updates task timer and task with new values
+        await updateTaskTimer(task: task, newValue: false);
+        return;
       }
       await _tasksService.updateTask(task: task);
     } catch (e) {

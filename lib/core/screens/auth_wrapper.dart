@@ -17,9 +17,16 @@ class AuthWrapper extends ConsumerStatefulWidget {
 }
 
 class AuthWrapperState extends ConsumerState<AuthWrapper> {
+  bool signInFailed = false;
   @override
   void initState() {
-    Future.microtask(() => ref.read(authDataSource).signInAnonymously());
+    Future.microtask(() =>
+        ref.read(authDataSource).signInAnonymously().catchError((error, stack) {
+          debugPrint("$error, stack: $stack");
+          setState(() {
+            signInFailed = true;
+          });
+        }));
     super.initState();
   }
 
@@ -36,7 +43,22 @@ class AuthWrapperState extends ConsumerState<AuthWrapper> {
               if (user != null) {
                 Future.microtask(() => context.goNamed(Home.path));
               }
-              return const LoadingIndicator();
+              return signInFailed
+                  ? GeneralError(
+                      message:
+                          "Failed to sign in, please check your internet connection.",
+                      onPressed: () async {
+                        try {
+                          await ref.read(authDataSource).signInAnonymously();
+                          setState(() {
+                            signInFailed = false;
+                          });
+                        } catch (e, stack) {
+                          debugPrint("Failed: $e,Stack: $stack");
+                        }
+                      },
+                    )
+                  : const LoadingIndicator();
             },
             error: (error, stack) => const GeneralError(),
             loading: () => const LoadingIndicator()),
